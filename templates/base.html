@@ -1,70 +1,20 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Build-a-Blog</title>
-    </head>
-
-    <style = type="text/css">
-        body {
-            font-family: sans-serif;
-            width: 800px;
-            margin: 0 auto;
-            padding: 10px;
-        }
-        .error {
-            color: red;
-        }
-        label {
-            display: block;
-            font-size: 20px;
-        }
-        input[type=text] {
-            width: 400px;
-            font-size 20px;
-            padding: 2px;
-        }
-        textarea {
-            width: 400px;
-            height: 200px;
-            font-size: 17px;
-            font-family: monospace;
-        }
-        input[type=submit] {
-            font-size: 24px;
-        }
-        hr {
-            margin: 20px auto;
-        }
-        .entry + .entry  {
-            margin-top: 20px;
-        }
-        .entry-title {
-            font-weight: bold;
-            font-size: 20px;
-        }
-        .entry-body {
-            margin: 0;
-            font-size: 17px;
-        }
-        nav ul li {
-            display: inline-block;
-            font-family: sans-serif;
-            padding: 0 10px 0 0;
-        }
-    </style>
-
-    <body>
-        <h1>Build-a-Blog</h1>
-        <nav>
-            <ul>
-                <li><a href="/newpost">Write New Post</a></li>
-                <li><a href="/blog">Recent Entries</a></li>
-                <li><a href="/all">All Posts</a></li>
-            </ul>
-        </nav>
-
-
-        {% block content %}
-        {% endblock %}
-    </body>
+   <head>
+      <style type="text/css">
+         h1 {
+            text-align: center;
+         }
+      </style>
+      <meta charset="utf-8">
+      <title>Build A Blog</title>
+   </head>
+   <body>
+      <div class="">
+         <a href="/blog">Main Blog Page</a>
+         <a href="/newpost">Add a Blog Entry</a>
+      </div>
+      {% block content %}
+      {% endblock %}
+   </body>
 </html>
