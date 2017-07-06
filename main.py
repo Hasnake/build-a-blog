@@ -16,9 +16,19 @@ class Blog(db.Model):
 def get_blogList():
     return Blog.query.all()
 
-@app.route("/newpost")
+@app.route("/newpost", methods=["POST", "GET"])
 def newpost_page():
-    return render_template('newpost.html')
+    if request.method == "GET":
+        return render_template('newpost.html')
+
+    if request.method == "POST":
+        # Save our post
+        # TODO: Put save logic here
+
+        # TODO: Redirect to create post page if there are errors
+        # (Use query parameters)
+
+        return redirect("/")
 
 
 @app.route('/blog')
@@ -33,3 +43,31 @@ def index():
 
 if __name__ == "__main__":
     app.run()
+
+
+
+
+
+#@app.route("/register", methods=['GET', 'POST'])
+#def register():
+    #if request.method == 'POST':
+        #email = request.form['email']
+        #password = request.form['password']
+        #verify = request.form['verify']
+        #if not is_email(email):
+            #flash('zoiks! "' + email + '" does not seem like an email address')
+            #return redirect('/register')
+        #email_db_count = User.query.filter_by(email=email).count()
+        #if email_db_count > 0:
+            #flash('yikes! "' + email + '" is already taken and password reminders are not implemented')
+            #return redirect('/register')
+        #if password != verify:
+            #flash('passwords did not match')
+            #return redirect('/register')
+        #user = User(email=email, password=password)
+        #db.session.add(user)
+        #db.session.commit()
+        #session['user'] = user.email
+        #return redirect("/")
+    #else:
+        #return render_template('register.html')
