@@ -5,11 +5,11 @@
    {% with messages = get_flashed_messages() %}
       <label for="blog_Title">Blog Title:</label><br>
       <input type="text" name="blog_Title"><br>
-      <p class="error">{{title_Error}}</p>
+      <p class="error">{{error_title}}</p>
       <br>
       <label for="blog_NewEntry">New Blog:</label><br>
       <textarea name="blog_NewEntry" rows="8" cols="80"></textarea><br>
-      <p class="error">{{entry_Error}}</p>
+      <p class="error">{{error_content}}</p>
       <br>
       <input type="submit" value="Add Entry">
    {% endwith %}

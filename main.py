@@ -14,6 +14,10 @@ class Blog(db.Model):
     title = db.Column(db.String(120))
     body = db.Column(db.String(120))
 
+    def __init__ (self, name, body):
+        self.name = name
+        self.body = body
+
 
 def get_blogList():
     return Blog.query.all()
@@ -28,15 +32,10 @@ def newpost_page():
         # TODO: Put save logic here
         blog_title = request.form['blog_Title']
         blog_content = request.form['blog_NewEntry']
-        newpost = Blog(blog_title, blog_content)
-        db.session.add(newpost)
-        db.session.commit()
-        return redirect("/")
-        # TODO: Redirect to create post page if there are errors
-        # (Use query parameters)
-    else:
+
         error_title=""
         error_content=""
+
         if len(blog_title) >= 120 or len(blog_title)==0:
             error_title = "Limit message under 120 characthers"
             blog_title="" #displays empty title instead of the the error content
@@ -45,8 +44,14 @@ def newpost_page():
             blog_content=""
         if len(error_title)>0 or len(error_content)>0:
             posts = Blog.query.all()
-            return render_template('index.html',page_name="Build A Blog!", posts=posts, title="Blog title", content="Blog content")
+            return render_template(
+                'newpost.html',page_name="Build A Blog!", posts=posts,
+                title="Blog title", content="Blog content", error_title=error_title,
+                error_content=error_content)
 
+        newpost = Blog(blog_title, blog_content)
+        db.session.add(newpost)
+        db.session.commit()
         return redirect("/")
 
 
